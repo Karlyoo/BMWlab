@@ -8,4 +8,5 @@
    - S-Plane: providing time and frequency synchronization between RU & DU.
    - C-Plane: DU deliver control signal(WHERE OR WHEN) to RU.()
    - U-Plane: send the actual user data.Additionally,it also transport PRACH to randomly find the nearby UE.
-   - M-Plane: 
+   - M-Plane: Handling the fault management in RU. Typically enabling SMO & DU remotly manage and monitor the RU.
+## 1.2 Timing Window
