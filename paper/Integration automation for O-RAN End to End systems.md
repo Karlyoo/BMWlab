@@ -35,3 +35,13 @@
 - initial bandwidth part:define the RB range.
  <img width="906" height="662" alt="image" src="https://github.com/user-attachments/assets/bbb0a5ae-01bf-4dc4-8e55-519f0449103d" />
  
+# CH2 Architecture
+<img width="641" height="802" alt="image" src="https://github.com/user-attachments/assets/4483c9cf-635e-4a1a-8c41-880864353e5d" />
+
+flow:
+- Input: Test cases → REST API → Integration rApp.
+- Process: rApp → Configuration service → configure DU/RU → initiate test.
+- Output: Throughput results → Grafana Dashboard visualization.
+
+# CH 3 Proposed Method
+## 3.1 System Input Parameters for rApp Execution
