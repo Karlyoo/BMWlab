@@ -91,7 +91,7 @@ Some configuration parameters are required to applied to DU & RU consistently.
    - The result RB count can be used to configure DU's `carrierBandwidth`
 - **SSB Frequency Selection**
    - input:arfcn (Absolute Radio Frequency Channel Number)
-   - <img width="711" height="387" alt="image" src="https://github.com/user-attachments/assets/2ffa8747-04aa-470c-be1e-c6c71592b180" />
+    <img width="711" height="387" alt="image" src="https://github.com/user-attachments/assets/2ffa8747-04aa-470c-be1e-c6c71592b180" />
    
 - **RU Center Frequency Calculation**
    - Input: number of PRBs (number-of-prb) instead of ARFCN.
@@ -99,8 +99,8 @@ Some configuration parameters are required to applied to DU & RU consistently.
 
 - **BWP (Bandwidth Part) Location and Size**
    - Encode the initial BWP location & size  format using RIV(Resource Indication Value) encoding.
-   - <img width="782" height="342" alt="image" src="https://github.com/user-attachments/assets/f24014d5-992c-4925-8393-02cfde1d3a77" />
+    <img width="782" height="342" alt="image" src="https://github.com/user-attachments/assets/f24014d5-992c-4925-8393-02cfde1d3a77" />
    
-   - <img width="712" height="474" alt="image" src="https://github.com/user-attachments/assets/27d33ec8-f795-4b67-9aca-2558fe4cbb74" />
+    <img width="712" height="474" alt="image" src="https://github.com/user-attachments/assets/27d33ec8-f795-4b67-9aca-2558fe4cbb74" />
 
 
