@@ -38,6 +38,9 @@
 # CH2 Architecture
 <img width="641" height="802" alt="image" src="https://github.com/user-attachments/assets/4483c9cf-635e-4a1a-8c41-880864353e5d" />
 
+rAPP:RAN Application,runs in Non-RT RIC (Non-Real-Time RAN Intelligent Controller). Doesn't require real-time control, but focuses on strategy, configuration, learning, and optimization.
+
+xAPP:in Near-RT RIC. communicate with rAPP in A1 plane.
 flow:
 - Input: Test cases → REST API → Integration rApp.
 - Process: rApp → Configuration service → configure DU/RU → initiate test.
@@ -45,3 +48,59 @@ flow:
 
 # CH 3 Proposed Method
 ## 3.1 System Input Parameters for rApp Execution
+<img width="1420" height="1096" alt="image" src="https://github.com/user-attachments/assets/c4acccb3-4e7f-447d-8769-515b9ff0219a" />
+
+- User need provide 3 things to excute the rAPP:
+   - gNB Configuration
+   - Test Configuration
+   - Host Information
+<img width="980" height="600" alt="image" src="https://github.com/user-attachments/assets/f4b5dd1f-05eb-41b3-a1ce-1aaa347f2074" />
+
+## 3.2 Automatic Configuration  mapping of gNB & RU
+### 3.2.1 Repetable parameters in DU/RU
+Some configuration parameters are required to applied to DU & RU consistently.
+->The integration rAPP can automatically parse this input and propagate to DU & RU.
+### 3.2.2 DU/RU MAC and VLAN Adjustment
+- In tradition,retrieving and configuring the MAC address of RU is **logging in terminal, executing commands and writing the value into the configuration file**.
+  - It's automated in this system.
+- For DU,involve 4 steps:
+  - 1. identify the NIC(Network Interface Card)
+    2. create a VF(Virtual Function) on NIC and assign it a specific MAC address and VLAN tag.
+    3. retrieve the VF's bus information,bind it to DPSK(Data Plane Development Kit)
+    4. fill the imformation into OAI gNB configuration file.
+<img width="1064" height="796" alt="image" src="https://github.com/user-attachments/assets/6a753e94-40ea-4bcc-8009-7baa58deff56" />
+
+  - PF (Physical Function): Physical function of the NIC, representing actual hardware resources.
+  - VF (Virtual Function): Virtual function carved out of the PF, which can be assigned a MAC address and VLAN.
+  - Bus Info: Identification information of the VF on the PCI bus, which is later provided to the DPDK for binding.
+  - DPDK (Data Plane Development Kit): High-performance packet processing framework required by gNBs to accelerate fronthaul traffic.
+
+- In automated solution,we only provide the NIC interface name.
+<img width="900" height="890" alt="image" src="https://github.com/user-attachments/assets/3406641c-ed76-457c-ad87-13eeba67e4df" />
+
+### 3.2.3 MIMO Adjustment
+<img width="828" height="1034" alt="image" src="https://github.com/user-attachments/assets/7f0d5bc0-71d0-431c-a8d6-658ad8c99e38" />
+
+### 3.2.4 Frequency Adjustment
+- **SubCarrier Spacing (SCS) Conversion**
+	- Input: subCarrierSpacing (kHz) → converted to:
+		- Numerology (0, 1, 2, 3)
+		- SCS identifier string (scs) for DU & RU config
+- **Bandwidth Conversion**
+   - Input: bSChannelBw (MHz) → converted to Resource Blocks (RBs) based on SCS,using NRB mapping table (3GPP TS 38.101-1 Table 5.3.2-1).
+   - The result RB count can be used to configure DU's `carrierBandwidth`
+- **SSB Frequency Selection**
+   - input:arfcn (Absolute Radio Frequency Channel Number)
+   - <img width="711" height="387" alt="image" src="https://github.com/user-attachments/assets/2ffa8747-04aa-470c-be1e-c6c71592b180" />
+   
+- **RU Center Frequency Calculation**
+   - Input: number of PRBs (number-of-prb) instead of ARFCN.
+   <img width="942" height="240" alt="image" src="https://github.com/user-attachments/assets/a5531801-036f-44b9-aa1c-6194cac4fc80" />
+
+- **BWP (Bandwidth Part) Location and Size**
+   - Encode the initial BWP location & size  format using RIV(Resource Indication Value) encoding.
+   - <img width="782" height="342" alt="image" src="https://github.com/user-attachments/assets/f24014d5-992c-4925-8393-02cfde1d3a77" />
+   
+   - <img width="712" height="474" alt="image" src="https://github.com/user-attachments/assets/27d33ec8-f795-4b67-9aca-2558fe4cbb74" />
+
+
