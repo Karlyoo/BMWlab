@@ -100,7 +100,9 @@ Some configuration parameters are required to applied to DU & RU consistently.
 - **BWP (Bandwidth Part) Location and Size**
    - Encode the initial BWP location & size  format using RIV(Resource Indication Value) encoding.
     <img width="782" height="342" alt="image" src="https://github.com/user-attachments/assets/f24014d5-992c-4925-8393-02cfde1d3a77" />
-   
+
+    <img width="658" height="682" alt="image" src="https://github.com/user-attachments/assets/3dd59780-c23e-4ffd-a367-f5c9cb0a7b19" />
+
     <img width="712" height="474" alt="image" src="https://github.com/user-attachments/assets/27d33ec8-f795-4b67-9aca-2558fe4cbb74" />
 
 
