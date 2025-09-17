@@ -105,4 +105,37 @@ Some configuration parameters are required to applied to DU & RU consistently.
 
     <img width="712" height="474" alt="image" src="https://github.com/user-attachments/assets/27d33ec8-f795-4b67-9aca-2558fe4cbb74" />
 
+## 3.3 Start E2E Component
+Each step is monitored and verified by automation rAPP.
+<img width="1444" height="1132" alt="image" src="https://github.com/user-attachments/assets/4cabb634-4f17-4e82-a0c9-31b211c1816f" />
 
+<img width="1120" height="766" alt="image" src="https://github.com/user-attachments/assets/7de1ec14-ccfb-4fd6-9bb4-9b425d8dd69f" />
+
+- DU/RU PTP Sync Check
+  - rApp queries PTP sync state from gNB (DU).
+  - rApp queries RU via M-plane for PTP status.
+  - Results stored in Topology Exposure & Inventory Overview (TEIV).
+  - rAPP checks PTP states.
+* Topology Exposure & Inventory Overview: in OAI O1,
+  - Topology Exposure: Provides visibility of the current network topology, including:
+    - Relationships between O-RUs, O-DUs, and O-CUs
+    - Transport network connectivity
+    - Node locations and operational status
+  - Inventory Overview : Maintains and exposes the resource inventory of the network, such as:
+    - Hardware resources (CPU, memory, radio units)
+    - Software versions and capabilities
+    - Configuration parameters
+    - Functional features supported by each node
+
+<img width="1238" height="894" alt="image" src="https://github.com/user-attachments/assets/e1bcf37f-02a7-43d0-adac-a8687f16bc4c" />
+
+- Capture NG Setup PCAP
+  - rApp uses tcpdump to capture NG interface packets.
+  - Stores them as PCAP files.
+- NGAP Message Exchange
+  - gNB → CN: NGSetupRequest
+  - CN → gNB: NGSetupResponse
+  - rApp analyzes PCAP with pyshark to verify proper NGAP exchange.
+* tcpdump: tool can capture the packet data and result PCAP files.
+* pyshark: a ppython wrapper for tshark. Reading,analyzing PCAP files or packet with Python.
+  =>Integration of automated analysis, reporting, and testing processes.
