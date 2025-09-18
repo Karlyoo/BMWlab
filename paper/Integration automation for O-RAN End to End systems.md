@@ -139,3 +139,13 @@ Each step is monitored and verified by automation rAPP.
 * tcpdump: tool can capture the packet data and result PCAP files.
 * pyshark: a ppython wrapper for tshark. Reading,analyzing PCAP files or packet with Python.
   =>Integration of automated analysis, reporting, and testing processes.
+
+## 3.4 checking fronthaul packet status and timing window adjustment
+<img width="790" height="850" alt="image" src="https://github.com/user-attachments/assets/c7bbfe1c-6853-4f16-8bf4-0728c8b038dd" />
+<img width="1496" height="730" alt="image" src="https://github.com/user-attachments/assets/d52cfe17-e438-493c-a848-5374882fafe0" />
+
+- whether C/U-plane packets fall within the configured timing window.
+  - If inside → UE proceeds with attachment.
+  - If outside → Adjust timing window parameters and restart gNB.
+- UE attach is allowed only when the RU packet timing is correct. 
+
