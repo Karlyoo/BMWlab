@@ -147,5 +147,19 @@ Each step is monitored and verified by automation rAPP.
 - whether C/U-plane packets fall within the configured timing window.
   - If inside → UE proceeds with attachment.
   - If outside → Adjust timing window parameters and restart gNB.
+## 3.5 UE Auto Attach and iperf
+<img width="1030" height="1590" alt="image" src="https://github.com/user-attachments/assets/1c533e03-e316-418c-abea-a6ab88d04a9b" />
+
+- UE-> gNB:iperf3
+* iperf3 : a tool to test Network efficiency.
+  - eg: throughout,latency,packet loss.
+  - using server(gNB)-client(UE)
+<img width="1046" height="1100" alt="image" src="https://github.com/user-attachments/assets/2134a1c6-b16b-47f6-b686-cf37aa01ada9" />
+
+- We can use ADB to controll airplain mode.
+- After the test is completed, gNB generates a performence management(PM) file.
+
+
+
 - UE attach is allowed only when the RU packet timing is correct. 
 
