@@ -36,10 +36,11 @@ cd oai/cmake_targets/ran_build/build
 sudo ./nr-uesoftmodem -r 106 --numerology 1 --band 78 -C 3619200000 --rfsim --sa --uicc0.imsi 001010000000001 --rfsimulator.serveraddr 127.0.0.1
 ```
 <img width="2381" height="691" alt="Screenshot from 2025-09-28 16-31-10" src="https://github.com/user-attachments/assets/d9b56a88-6835-41c7-a4a8-085c82c0b7db" />
+**this log shows that
 
 
-
-
+<img width="2385" height="602" alt="image" src="https://github.com/user-attachments/assets/b3796e7c-8e44-4028-aeb0-381ed5c6e46f" />
+**Log of OAI gNB with e2**
 
 
 
