@@ -11,13 +11,13 @@ it means that:
 - You can make changes and commit new changes, but these commits won't belong to any branch (unless you manually create a new branch).
 - If you switch to a different branch, these new commits may be discarded (because they aren't referenced by any branch).
 
-``
+```
 cd openairinterface5g/cmake_targets/
 sudo ./build_oai -I -w SIMU --gNB --nrUE --build-e2 --ninja
 
 cd openairinterface5g/cmake_targets/ran_build/build
 sudo ninja nr-softmodem nr-uesoftmodem dfts ldpc params_libconfig rfsimulator
-``
+```
 - `-I`option is to install pre-requisites, you only need it the first time you build the softmodem or when some oai dependencies have changed.
 - `-w` option is to select the radio head support you want to include in your build. Radio head support is provided via a shared library, which is called the "oai device" The build script creates a soft link from liboai_device.so to the true device which will be used at run-time (here the USRP one, liboai_usrpdevif.so). The RF simulatorRF simulator is implemented as a specific device replacing RF hardware, it can be specifically built using `-w` SIMU option, but is also built during any softmodem build.
 - `--build` e2 option is to use the E2 agent, integrated within RAN
