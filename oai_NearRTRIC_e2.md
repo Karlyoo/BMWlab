@@ -159,6 +159,7 @@ NEXT: empoly CN5G BY [Run OAI gNB & CN5G on different machines](https://ntust-bm
 
 E2SM-KPM [OSC [I] Near-RT RIC && OAI gNB E2SM_KPM](https://ntust-bmwlab.notion.site/OSC-I-Near-RT-RIC-OAI-gNB-E2SM_KPM-13f10098314380c293edf8b9d5b87f4a)
 
+[Welcome to O-RAN SC L Release Documentation Home](https://docs.o-ran-sc.org/en/latest/)
 
 
 
