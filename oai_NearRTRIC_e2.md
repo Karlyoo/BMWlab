@@ -1,5 +1,9 @@
 # Near RT RIC
-Reference: [Summary of OSC [I&K] Near-RT RIC && OAI gNB](https://ntust-bmwlab.notion.site/Summary-of-OSC-I-K-Near-RT-RIC-OAI-gNB-14a1009831438013af8aee6f056f75a2) 
+Reference: 
+
+[Summary of OSC [I&K] Near-RT RIC && OAI gNB](https://ntust-bmwlab.notion.site/Summary-of-OSC-I-K-Near-RT-RIC-OAI-gNB-14a1009831438013af8aee6f056f75a2) by Tobby
+
+[openairinterface5g/openair2/E2AP/README.md](https://gitlab.eurecom.fr/oai/openairinterface5g/-/blob/v2.1.0/openair2/E2AP/README.md)
 ```
 +-------------------+       +-------------------+       +-------------------+
 |   OAI gNB/CU/DU   | <---> |   E2 Agent        | <---> |   Near-RT RIC     |
