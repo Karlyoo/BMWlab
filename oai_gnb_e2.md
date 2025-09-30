@@ -1,4 +1,56 @@
 # Run OAI gNB with e2
+## Build the FlexRIC (Near-Real-Time RIC)
+FlexRIC (Flexible RAN Intelligent Controller),supporting the E2 interface (E2AP protocol) and various service models (SMs) such as KPM (Key Performance Measurement), enabling xApps (extensible applications) for RAN optimization, AI/ML inference, and performance monitoring.
+
+```
+# Download the required dependencies
+sudo apt install libsctp-dev python3.8 cmake-curses-gui libpcre2-dev python-dev
+### If python3.8 is not available from your current package repository sources. 
+sudo apt-get install software-properties-common
+sudo add-apt-repository ppa:deadsnakes/ppa
+sudo apt-get update
+sudo apt-get install python3.8
+### If python-dev is not available from your current package repository sources. 
+### The python-dev package has been replaced by python3-dev for Python 3. 
+sudo apt-get update
+sudo apt-get install python3-dev
+
+sudo apt install libsctp-dev python3.8 cmake-curses-gui libpcre2-dev python3-dev
+
+# Install prerequisites: SWIG (at least v.4.1).
+cd
+git clone https://github.com/swig/swig.git
+cd swig
+git checkout release-4.1 
+./autogen.sh
+./configure --prefix=/usr/
+make -j8
+sudo make install
+swig -version
+
+# Clone the FlexRIC repository
+cd
+git clone https://gitlab.eurecom.fr/mosaic5g/flexric flexric
+cd flexric/
+git checkout f1c08ed2b9b1eceeda7941dd7bf435db0168dd56
+# Build FlexRIC
+mkdir build && cd build && cmake .. && make -j8
+### gcc-11 is not supported in FlexRIC
+sudo apt update -y
+sudo apt upgrade -y
+sudo apt install -y build-essential
+sudo apt install -y gcc-10 g++-10 cpp-10
+sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-10 100 --slave /usr/bin/g++ g++ /usr/bin/g++-10 --slave /usr/bin/gcov gcov /usr/bin/gcov-10
+sudo update-alternatives --config gcc # chose gcc-10
+
+# Installation of Service Models (SMs)
+sudo make install
+```
+
+`sm_dir` is a critical directory path in FlexRIC, typically defaulting to `/usr/local/lib/flexric/`.
+
+It stores the compiled service model shared libraries, which implement O-RAN-specified SMs (e.g., ORAN-E2SM-KPM, GTP_STATS) for handling communication, data collection, and control logic between E2 nodes.
+
 
 ## OAI RAN install
 ```
@@ -18,14 +70,27 @@ sudo ./build_oai -I -w SIMU --gNB --nrUE --build-e2 --ninja
 cd openairinterface5g/cmake_targets/ran_build/build
 sudo ninja nr-softmodem nr-uesoftmodem dfts ldpc params_libconfig rfsimulator
 ```
-- `-I`option is to install pre-requisites, you only need it the first time you build the softmodem or when some oai dependencies have changed.
-- `-w` option is to select the radio head support you want to include in your build. Radio head support is provided via a shared library, which is called the "oai device" The build script creates a soft link from liboai_device.so to the true device which will be used at run-time (here the USRP one, liboai_usrpdevif.so). The RF simulatorRF simulator is implemented as a specific device replacing RF hardware, it can be specifically built using `-w` SIMU option, but is also built during any softmodem build.
+-  `-I`option is to instructs the build script to perform an installation step after compilation, copying the built binaries and libraries to the appropriate system directories.
+- `-w SIMU` is to specifies the waveform or simulation mode. `SIMU` indicates a simulation environment, likely using the OAI softmodem in simulation mode (e.g., with rfsimulator) rather than hardware-based RF.
 - `--build` e2 option is to use the E2 agent, integrated within RAN
 - `--ninja` is to use the ninja build tool, which speeds up compilation.
 
-## run gnb
-start the gNB-mono
+## Run OAI gNB with e2
 ```
+e2_agent = {
+  near_ric_ip_addr = "127.0.0.1";
+  #sm_dir = "/path/where/the/SMs/are/located/"
+  sm_dir = "/usr/local/lib/flexric/"
+};
+```
+
+**/openairinterface5g/targets/PROJECTS/GENERIC-NR-5GC/CONF/gnb.sa.band78.fr1.106PRB.usrpb210.conf**
+
+To configure E2 agent,we need add or revise the following block in the OAI’s configuration file.
+
+
+```
+%% start the gNB-mono
 cd oai/cmake_targets/ran_build/build
 sudo ./nr-softmodem -O ../../../targets/PROJECTS/GENERIC-NR-5GC/CONF/gnb.sa.band78.fr1.106PRB.usrpb210.conf --rfsim --sa -E
 ```
