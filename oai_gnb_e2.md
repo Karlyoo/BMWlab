@@ -1,5 +1,21 @@
-# Run OAI gNB with e2
-## Build the FlexRIC (Near-Real-Time RIC)
+# Near RT RIC
+Reference: [Summary of OSC [I&K] Near-RT RIC && OAI gNB](https://ntust-bmwlab.notion.site/Summary-of-OSC-I-K-Near-RT-RIC-OAI-gNB-14a1009831438013af8aee6f056f75a2) 
+```
++-------------------+       +-------------------+       +-------------------+
+|   OAI gNB/CU/DU   | <---> |   E2 Agent        | <---> |   Near-RT RIC     |
+|                   |       | (E2AP / E2SM)     |       | (xApps: KPM, RSM) |
+|-------------------|  E2   | - Monitors KPIs   |  E2   | - AI Optimization |
+|   OAI UEs         | Intf. | - Applies Controls| Intf. | - Slicing Policies|
++-------------------+       +-------------------+       +-------------------+
+         |                                                      
+         |                          
+         v
++-------------------+                                        
+|   OAI Core (5GC)  |
++-------------------+                                       
+```
+## E2AP
+### Build the FlexRIC (Near-Real-Time RIC)
 FlexRIC (Flexible RAN Intelligent Controller),supporting the E2 interface (E2AP protocol) and various service models (SMs) such as KPM (Key Performance Measurement), enabling xApps (extensible applications) for RAN optimization, AI/ML inference, and performance monitoring.
 
 ```
@@ -52,7 +68,7 @@ sudo make install
 It stores the compiled service model shared libraries, which implement O-RAN-specified SMs (e.g., ORAN-E2SM-KPM, GTP_STATS) for handling communication, data collection, and control logic between E2 nodes.
 
 
-## OAI RAN install
+### OAI RAN install
 ```
 git clone -b 2024.w43 https://gitlab.eurecom.fr/oai/openairinterface5g.git
 ```
@@ -75,7 +91,7 @@ sudo ninja nr-softmodem nr-uesoftmodem dfts ldpc params_libconfig rfsimulator
 - `--build` e2 option is to use the E2 agent, integrated within RAN
 - `--ninja` is to use the ninja build tool, which speeds up compilation.
 
-## Run OAI gNB with e2
+### Run OAI gNB with e2
 ```
 e2_agent = {
   near_ric_ip_addr = "127.0.0.1";
@@ -95,7 +111,7 @@ cd oai/cmake_targets/ran_build/build
 sudo ./nr-softmodem -O ../../../targets/PROJECTS/GENERIC-NR-5GC/CONF/gnb.sa.band78.fr1.106PRB.usrpb210.conf --rfsim --sa -E
 ```
 
-## run nrUE and connect to gnb
+### run nrUE and connect to gnb
 ```
 cd oai/cmake_targets/ran_build/build
 sudo ./nr-uesoftmodem -r 106 --numerology 1 --band 78 -C 3619200000 --rfsim --sa --uicc0.imsi 001010000000001 --rfsimulator.serveraddr 127.0.0.1
@@ -134,6 +150,10 @@ SO we can adjust it in config file:
 <img width="2422" height="1428" alt="Screenshot from 2025-09-28 23-35-16" src="https://github.com/user-attachments/assets/3dda303c-77bd-4bb9-95a3-99a462b76998" />
 
 **log of nrUE**
+
+NEXT: empoly CN5G BY [Run OAI gNB & CN5G on different machines](https://ntust-bmwlab.notion.site/Run-OAI-gNB-CN5G-on-different-machines-15710098314380cd9cddfda1e2ecd185)
+
+E2SM-KPM [OSC [I] Near-RT RIC && OAI gNB E2SM_KPM](https://ntust-bmwlab.notion.site/OSC-I-Near-RT-RIC-OAI-gNB-E2SM_KPM-13f10098314380c293edf8b9d5b87f4a)
 
 
 
