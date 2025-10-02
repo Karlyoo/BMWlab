@@ -157,6 +157,59 @@ SO we can adjust it in config file:
 
 NEXT: empoly CN5G BY [Run OAI gNB & CN5G on different machines](https://ntust-bmwlab.notion.site/Run-OAI-gNB-CN5G-on-different-machines-15710098314380cd9cddfda1e2ecd185)
 
+### CN5G Install and run
+
+OAI CN5G pre-requisites
+```
+sudo apt install -y git net-tools putty
+
+# https://docs.docker.com/engine/install/ubuntu/sudo apt update
+sudo apt install -y ca-certificates curl
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt update
+sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+# Add your username to the docker group, otherwise you will have to run in sudo mode.
+sudo usermod -a -G docker $(whoami)
+reboot
+```
+
+Download and copy configuration files
+```
+wget -O ~/oai-cn5g.zip https://gitlab.eurecom.fr/oai/openairinterface5g/-/archive/develop/openairinterface5g-develop.zip?path=doc/tutorial_resources/oai-cn5g
+unzip ~/oai-cn5g.zip
+mv ~/openairinterface5g-develop-doc-tutorial_resources-oai-cn5g/doc/tutorial_resources/oai-cn5g ~/oai-cn5g
+rm -r ~/openairinterface5g-develop-doc-tutorial_resources-oai-cn5g ~/oai-cn5g.zip
+```
+
+Pull OAI CN5G docker images
+```
+cd ~/oai-cn5g
+docker compose pull
+```
+<img width="1470" height="637" alt="Screenshot from 2025-10-03 00-32-27" src="https://github.com/user-attachments/assets/b3b0aef1-523f-4ac0-9a8f-17b397f2e021" />
+
+
+
+Run and Stop OAI CN5G
+```
+# Start OAI CN5G
+cd ~/oai-cn5g
+docker compose up -d
+```
+```
+# Stop OAI CN5G
+cd ~/oai-cn5g
+docker compose down
+```
+
+list all Docker containers 
+<img width="2435" height="810" alt="image" src="https://github.com/user-attachments/assets/f8c42b38-1760-4709-aa37-a87265d71eea" />
+
+
 E2SM-KPM [OSC [I] Near-RT RIC && OAI gNB E2SM_KPM](https://ntust-bmwlab.notion.site/OSC-I-Near-RT-RIC-OAI-gNB-E2SM_KPM-13f10098314380c293edf8b9d5b87f4a)
 
 [Welcome to O-RAN SC L Release Documentation Home](https://docs.o-ran-sc.org/en/latest/)
