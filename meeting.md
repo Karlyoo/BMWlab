@@ -7,5 +7,6 @@ I ask Tobby for E2SM-KPM installation. And he mentioned that the gNB and RIC can
 
 Also Tobby and Richard gave us some advice for Eurecom Intership,including the neccessary document and the flight.
 
-
-
+## 10/15
+For the OAI gnb and [L] near RT RIC,I can use o-cloud OAI gnb by Nino to try to connect it. My next step is install it by Nino's installation guide.
+And Johnson advices me to use OAI UE to confirm  and test the connection first.
