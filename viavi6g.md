@@ -45,3 +45,35 @@ The paper outlines a progression of digital twin capabilities:
     - Example: An energy-saving policy (like cell activation/shutdown) can be verified in the digital twin to see its impact on KPIs (e.g., energy efficiency, UE throughput, QoE) using closed-loop optimization.
    
   <img width="1304" height="536" alt="image" src="https://github.com/user-attachments/assets/b5e9958f-703f-4377-b112-4db88f8c3a45" />
+
+### 3. ISAC Channel Modeling
+#### 3.1 sensing channel model
+- Channel Model H(t): The channel is modeled as a sum of discrete components, or "taps"5.
+- Mathematical Expression: 
+- Channel Taps: These include reflections from both the target and background clutter7.
+- parameters:
+  - Path-gain (cp):The amplitude of the path-gain provides information about the Radar Cross Section (RCS) of an object.
+  - Delay (tau_p):Delay provides information on the total path length of the signal11.It is used for estimating the position of targets.
+     - Mono-static ISAC: Total path length is twice the distance to the target.
+     - Bi-static ISAC: Total path length is the sum of the transmitter-to-target distance and the target-to-receiver distance.
+   - Doppler shift (f(d,p)):This parameter provides information about the speed of the targets.
+   - Angle-of-Arrival (AoA) & Angle-of-Departure (AoD):These angles also provide useful information about the target's position and speed.ISAC systems can localize targets by using a combination of delay and AoA/AoD information.
+
+#### 3.2 ray tracing for sensing channel modelling
+- VIAVI uses its ray tracing technology to create a digital replica of the test environment for accurate ISAC testing.
+- Function: It emulates the time-varying channel in real-time by modeling all significant reflections from targets and background objects.
+- Fidelity: The technology supports all reflected rays, including Line-of-Sight (LoS) and Non-Line-of-Sight (NLoS) paths for both targets and clutter.
+- Use Case: A primary use case is investigating target identification performance by analyzing the reflected rays.
+**Target Identification Methods (Section 4.2.2)**
+- RCS Estimation:
+  - The ISAC system measures the total power drop of the signal.
+  - This drop has two components: path-loss from propagation and power drop from target reflection.
+  - By estimating the path-loss (using the distance derived from delay), the system can isolate the RCS.
+  - Different targets (e.g., drones, birds) have different RCS values, allowing the system to distinguish them.
+- Speed Estimation:
+  - The system estimates the Doppler shift to determine the target's speed.
+  - This helps classify targets, as different objects have different typical speed ranges.
+- Micro-Doppler Estimation:
+  - This is used when a target has rotating parts, such as the blades of a drone or the moving arms of a pedestrian.
+  - These rotating parts create a fluctuation in the Doppler shift over time.
+  - An AI-based approach can be trained on a library of these micro-Doppler fluctuation signatures to achieve high performance in target classification (e.g., distinguishing a drone from a bird).
