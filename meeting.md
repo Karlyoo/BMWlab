@@ -57,13 +57,10 @@ And Johnson advices me to use OAI UE to confirm  and test the connection first.
 - **Action Items**:
   - Karl:
     - [ ] Prioritize duplicating Summer's "automatic deployment" and "SMO" work.
-    - [ ] Focus on the immediate goal of verifying data collection.
-    - [ ] Troubleshoot and fix the OAI connection issue, specifically with the 5G core and the "OLG dot P" (OAI-GNB).
-    - [ ] Move all project work from the private repository to the correct "Orandos repository."
-    - [ ] Update the Trello "trail log digital twin" card by attaching the hyperlink to the repository work.
-    - [ ] Stop using the GitHub web UI for editing documentation.
-    - [ ] Install and use Visual Studio Code to edit the "study notes" locally.
-    - [ ] Correct all Markdown formatting in the "study notes" based on the speaker's feedback (code blocks, line breaks, etc.).
+    - [ ] Focusing on immediate goal of verifying data collection.
+    - [ ] Troubleshoot and fix the OAI connection issue, specifically with the 5G core and the OAI-GNB.
+    - [ ] Move all project work from the private repository to the correct "lab's repository."
+    - [ ] Stop using the GitHub web UI for editing documentation and use Visual Studio Code to edit the "study notes" locally.
     - [ ] Resolve the GitHub account issue (check "GitHub education" status) to gain access to the "organization repository."
 
   
