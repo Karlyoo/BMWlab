@@ -63,4 +63,20 @@ And Johnson advices me to use OAI UE to confirm  and test the connection first.
     - [ ] Stop using the GitHub web UI for editing documentation and use Visual Studio Code to edit the "study notes" locally.
     - [ ] Resolve the GitHub account issue (check "GitHub education" status) to gain access to the "organization repository."
 
-  
+ ## 2025/11/d13-10.00
+
+- **Recording**: [./transcriptions/錄製 (2).m4a](./transcriptions/錄製 (2).m4a)
+- **Attendees**: Karl(presenter), Prof.Ray (reviwer)
+- **Topic**: E2SM-LLC,O-RAN xApp and Control Service Functionality Discussion
+- **Summary**: The Presenter reported project progress on O-RAN to the Reviewer, focusing on the "Control Service" function within the Near-RT RIC, its relationship with xApps and the E2 interface, and the data transmission flow. The meeting also covered the functional distinction between KPM and RC, and confirmed the current availability status of a needed xApp.
+
+- **Discussion Points**:
+    - **Control Service Function**: Clarified that the "Control Service" is primarily used for scheduling and controlling the E2 interface/xApps, and has less direct relation to SRS (Sounding Reference Signal).
+    - **Data Transmission Flow**: Explained the process of signals from the UE, detection of a "Trigger" by the Node, generation of a "Report," and its transmission to the Near-RT RIC.
+    - **KPM vs. RC**: Discussed the functional distinction between KPM (from Observation) and RC (for Control), and how RC pulls PHY layer information to the upper layers.
+    - **xApp Availability**: Confirmed that a specific xApp is expected to be released in December, is not currently available for direct download, and may require self-modification/implementation using a previously discussed method.
+
+- **Action Items**:
+    - Presenter (and another team member):
+        - [ ] Find papers related to SRS to gather content needed for future algorithms. 
+        - [ ] Ask Prof.Lue's student for some JSAC file or note
